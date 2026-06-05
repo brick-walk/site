@@ -72,7 +72,7 @@
   --sidebar-accent-foreground: oklch(0.985 0 0);
   --sidebar-border: oklch(0.269 0 0);
   --sidebar-ring: oklch(0.439 0 0);
-  --header-offset: 6rem;
+  --header-offset: 15rem;
 }
 
 @theme inline {
@@ -128,22 +128,4 @@
 html {
   scroll-behavior: smooth;
   scroll-padding-top: var(--header-offset);
-}
-
-/* Apply to common anchor targets */
-section[id],
-h1[id],
-h2[id],
-h3[id],
-h4[id],
-h5[id],
-h6[id] {
-  scroll-margin-top: var(--header-offset);
-}
-
-/* Optional: tweak for larger screens if the header gets taller */
-@media (min-width: 768px) {
-  :root {
-    --header-offset: 6.5rem;
-  }
 }
