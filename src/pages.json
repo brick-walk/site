@@ -47,5 +47,5 @@
     "title": "Blog | BrickWalk",
     "description": "Brick Walk's Blog",
     "content": "src/pages/blog.html"
-  },
+  }
 ]
