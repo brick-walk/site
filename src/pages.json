@@ -1,0 +1,45 @@
+[
+  {
+    "output": "index.html",
+    "title": "Kellen Ulrich | Portfolio",
+    "description": "Professional portfolio showcasing creative work and design projects.",
+    "content": "src/pages/index.html"
+  },
+  {
+    "output": "about.html",
+    "title": "About | Kellen Ulrich",
+    "description": "Learn more about my background, experience, and creative journey.",
+    "content": "src/pages/about.html"
+  },
+  {
+    "output": "portfolio.html",
+    "title": "Portfolio | Kellen Ulrich",
+    "description": "Browse my complete portfolio of creative work and design projects.",
+    "content": "src/pages/portfolio.html"
+  },
+  {
+    "output": "project.html",
+    "title": "Project Title | Kellen Ulrich",
+    "description": "Detailed view of this creative project.",
+    "content": "src/pages/project.html"
+  },
+  {
+    "output": "contact.html",
+    "title": "Contact | Kellen Ulrich",
+    "description": "Get in touch for commissions, collaborations, or inquiries.",
+    "content": "src/pages/contact.html"
+  },
+  {
+    "output": "faq.html",
+    "title": "FAQ | Kellen Ulrich",
+    "description": "Frequently asked questions about commissions, services, and more.",
+    "content": "src/pages/faq.html",
+    "head": "src/pages/faq.head.html"
+  },
+  {
+    "output": "commissions.html",
+    "title": "Commissions | Kellen Ulrich",
+    "description": "Commission custom work and explore available commission options.",
+    "content": "src/pages/commissions.html"
+  }
+]
