@@ -13,33 +13,39 @@
   },
   {
     "output": "portfolio.html",
-    "title": "Portfolio | Kellen Ulrich",
+    "title": "Portfolio | BrickWalk",
     "description": "Browse my complete portfolio of creative work and design projects.",
     "content": "src/pages/portfolio.html"
   },
   {
     "output": "project.html",
-    "title": "Project Title | Kellen Ulrich",
+    "title": "Project Title | BrickWalk",
     "description": "Detailed view of this creative project.",
     "content": "src/pages/project.html"
   },
   {
     "output": "contact.html",
-    "title": "Contact | Kellen Ulrich",
+    "title": "Contact | BrickWalk",
     "description": "Get in touch for commissions, collaborations, or inquiries.",
     "content": "src/pages/contact.html"
   },
   {
     "output": "faq.html",
-    "title": "FAQ | Kellen Ulrich",
+    "title": "FAQ | BrickWalk",
     "description": "Frequently asked questions about commissions, services, and more.",
     "content": "src/pages/faq.html",
     "head": "src/pages/faq.head.html"
   },
   {
     "output": "commissions.html",
-    "title": "Commissions | Kellen Ulrich",
+    "title": "Commissions | BrickWalk",
     "description": "Commission custom work and explore available commission options.",
     "content": "src/pages/commissions.html"
-  }
+  },
+  {
+    "output": "blog.html",
+    "title": "Blog | BrickWalk",
+    "description": "Brick Walk's Blog",
+    "content": "src/pages/blog.html"
+  },
 ]

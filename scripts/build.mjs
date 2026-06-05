@@ -62,7 +62,6 @@ async function findBrokenReferences(outputFilePath, html) {
     const exists = await fileExists(targetPath)
     if (!exists) {
       broken.push(`${path.basename(outputFilePath)} -> ${reference}`)
-      console.warn(targetPath)
     }
   }
 
