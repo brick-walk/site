@@ -103,14 +103,22 @@ async function findBrokenReferences(outputFilePath, html) {
     }
 
     let pathname = reference.split("#")[0]
-    if (!pathname) continue
+    if (!pathname) {
+      continue
+    }
 
-    if (basePathPrefix && pathname.startsWith(`${basePathPrefix}/`)) {
-      pathname = pathname.slice(basePathPrefix.length)
+    if (pathname.startsWith("/site/")) {
+      pathname = pathname.slice("/site".length)
+    } else if (pathname === "/site") {
+      pathname = "/"
+    }
+
+    if (pathname.startsWith(siteBasePath)) {
+      pathname = pathname.slice(siteBasePath.length)
     }
 
     const targetPath = pathname.startsWith("/")
-      ? path.join(rootDir, pathname)
+      ? path.join(rootDir, pathname.slice(1))
       : path.resolve(outputDir, pathname)
 
     const exists = await fileExists(targetPath)
