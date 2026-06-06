@@ -1,0 +1,22 @@
+{
+	"images": [
+		{
+			"src": "/images/portfolio/legolas_build.png",
+			"views": ["/images/portfolio/legolas_build.png", "/images/portfolio/legolas_build.png", "/images/portfolio/legolas_build.png"],
+			"title": "Legolas",
+			"description": "Describe your build here"
+		},
+		{
+			"src": "/images/portfolio/steampunk_inventor_build.png",
+			"views": ["/images/portfolio/steampunk_inventor_build.png", "/images/portfolio/steampunk_inventor_build.png", "/images/portfolio/steampunk_inventor_build.png"],
+			"title": "Steampunk Inventor",
+			"description": "Describe your build here"
+		},
+		{
+			"src": "/images/portfolio/zane_build.png",
+			"views": ["/images/portfolio/zane_build.png", "/images/portfolio/zane_build.png", "/images/portfolio/zane_build.png"],
+			"title": "Zane",
+			"description": "Describe your build here"
+		}
+	]
+}

@@ -1,36 +1,49 @@
-  <!-- Header -->
-  <header class="site-header">
-    <a href="index.html" class="logo">
-      <img src="logo.png" alt="Kellen Ulrich" class="logo-img">
-    </a>
+<!-- Header -->
+<header class="site-header">
+  <a href="{{INDEX_HREF}}" class="logo">
+    <img src="{{LOGO_SRC}}" alt="Kellen Ulrich" class="logo-img">
+  </a>
 
-    <nav class="main-nav" role="navigation">
-      <ul class="nav-list">
-        <li class="nav-item has-dropdown">
-          <a href="#" class="nav-link">Portfolio</a>
-          <ul class="dropdown-menu">
-            <li><a href="portfolio.html#architecture">Architecture</a></li>
-            <li><a href="portfolio.html#castle">Castle</a></li>
-            <li><a href="portfolio.html#icons">Icons</a></li>
-            <li><a href="portfolio.html#mosiacs">Mosiacs</a></li>
-            <li><a href="portfolio.html#replicas">Replicas</a></li>
-            <li><a href="portfolio.html#vignettes">Vignettes</a></li>
-          </ul>
-        </li>
-        <li class="nav-item has-dropdown">
-          <a href="#" class="nav-link">About</a>
-          <ul class="dropdown-menu">
-            <li><a href="about.html">About Me</a></li>
-            <li><a href="blog.html">Blog</a></li>
-            <li><a href="faq.html">FAQ</a></li>
-          </ul>
-        </li>
-        <li class="nav-item">
-          <a href="commissions.html" class="nav-link">Commissions</a>
-        </li>
-        <li class="nav-item">
-          <a href="contact.html" class="nav-link">Contact</a>
-        </li>
-      </ul>
-    </nav>
-  </header>
+  <nav class="main-nav" role="navigation" aria-label="Main navigation">
+    <ul class="nav-list">
+      <li class="nav-item has-dropdown">
+        <button
+          type="button"
+          class="nav-link"
+          aria-haspopup="true"
+          aria-expanded="false"
+          aria-controls="portfolio-menu"
+        >
+          Portfolio
+        </button>
+        <ul class="dropdown-menu" id="portfolio-menu" aria-label="Portfolio categories">
+          {{PORTFOLIO_DROPDOWN_ITEMS}}
+        </ul>
+      </li>
+
+      <li class="nav-item has-dropdown">
+        <button
+          type="button"
+          class="nav-link"
+          aria-haspopup="true"
+          aria-expanded="false"
+          aria-controls="about-menu"
+        >
+          About
+        </button>
+        <ul class="dropdown-menu" id="about-menu" aria-label="About">
+          <li><a href="{{ABOUT_HREF}}">About Me</a></li>
+          <li><a href="{{BLOG_HREF}}">Blog</a></li>
+          <li><a href="{{FAQ_HREF}}">FAQ</a></li>
+        </ul>
+      </li>
+
+      <li class="nav-item">
+        <a href="{{COMMISSIONS_HREF}}" class="nav-link">Commissions</a>
+      </li>
+      <li class="nav-item">
+        <a href="{{CONTACT_HREF}}" class="nav-link">Contact</a>
+      </li>
+    </ul>
+  </nav>
+</header>

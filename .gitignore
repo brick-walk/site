@@ -13,3 +13,14 @@ __v0_jsx-dev-runtime.ts
 node_modules/
 dist/
 .DS_Store
+
+# Generated site output
+/index.html
+/about.html
+/blog.html
+/contact.html
+/commissions.html
+/faq.html
+/portfolio.html
+/project.html
+/portfolio/

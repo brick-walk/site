@@ -7,15 +7,17 @@
   <meta name="description" content="{{DESCRIPTION}}">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Inter:wght@300;400;500&display=swap"
+    rel="stylesheet"
+  >
+  <link rel="stylesheet" href="{{STYLES_HREF}}">
   {{HEAD_EXTRA}}
 </head>
 <body>
-{{NAV}}
-{{MAIN_CONTENT}}
+  {{NAV}}
+  {{MAIN_CONTENT}}
 
-  <!-- Footer -->
   <footer class="site-footer">
     <div class="social-links">
       <a href="https://instagram.com/yourhandle" target="_blank" rel="noopener noreferrer">Instagram</a>
@@ -32,6 +34,6 @@
     </p>
   </footer>
 
-  <script src="script.js"></script>
+  <script src="{{SCRIPT_HREF}}" defer></script>
 </body>
 </html>
