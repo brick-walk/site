@@ -8,6 +8,9 @@ const pagesConfigPath = path.join(rootDir, "src/pages.json")
 const portfolioConfigPath = path.join(rootDir, "src/pages/portfolio")
 const portfolioDetailTemplatePath = path.join(rootDir, "templates/portfolio-detail.html")
 
+const siteBasePath = (process.env.SITE_BASE_PATH || "/site").replace(/\/+$/, "")
+const basePathPrefix = siteBasePath === "/" ? "" : siteBasePath
+
 const TOKEN_REGEX = /\{\{[A-Z_]+\}\}/
 const LINK_ATTR_REGEX = /\b(?:href|src)="([^"]+)"/g
 
@@ -17,6 +20,35 @@ function renderTemplate(template, replacements) {
     rendered = rendered.split(`{{${key}}}`).join(value ?? "")
   }
   return rendered
+}
+
+function prefixBasePath(value) {
+  if (!value) return value
+  if (
+    value.startsWith("http://") ||
+    value.startsWith("https://") ||
+    value.startsWith("//") ||
+    value.startsWith("mailto:") ||
+    value.startsWith("tel:") ||
+    value.startsWith("javascript:") ||
+    value.startsWith("data:") ||
+    value.startsWith("#")
+  ) {
+    return value
+  }
+
+  if (value.startsWith("/")) {
+    return `${basePathPrefix}${value}`
+  }
+
+  return value
+}
+
+function rewriteRootAbsoluteLocalUrls(html) {
+  return html.replace(LINK_ATTR_REGEX, (fullMatch, url) => {
+    const rewritten = prefixBasePath(url)
+    return fullMatch.replace(url, rewritten)
+  })
 }
 
 function isSkippableReference(value) {
@@ -70,9 +102,11 @@ async function findBrokenReferences(outputFilePath, html) {
       continue
     }
 
-    const [pathname] = reference.split("#")
-    if (!pathname) {
-      continue
+    let pathname = reference.split("#")[0]
+    if (!pathname) continue
+
+    if (basePathPrefix && pathname.startsWith(`${basePathPrefix}/`)) {
+      pathname = pathname.slice(basePathPrefix.length)
     }
 
     const targetPath = pathname.startsWith("/")
@@ -124,6 +158,7 @@ function toRelativeHref(fromFilePath, toFilePath, { stripIndex = false } = {}) {
 
 function buildPathReplacements(outputPath, portfolioPageOutputPath) {
   return {
+    SITE_BASE_PATH: basePathPrefix,
     INDEX_HREF: toRelativeHref(outputPath, path.join(rootDir, "index.html")),
     LOGO_SRC: toRelativeHref(outputPath, path.join(rootDir, "logo.png")),
     STYLES_HREF: toRelativeHref(outputPath, path.join(rootDir, "styles.css")),
@@ -154,7 +189,7 @@ function buildViewsHtml(views, title) {
       (viewSrc) => `
         <figure class="overflow-hidden rounded-xl bg-zinc-100 dark:bg-zinc-900">
           <img
-            src="${viewSrc}"
+            src="${prefixBasePath(viewSrc)}"
             alt="${title}"
             class="aspect-square w-full object-cover"
             loading="lazy"
@@ -189,7 +224,7 @@ function buildPortfolioSectionsHtml(portfolioConfigs, currentOutputPath) {
 
           return `
             <a href="${href}" class="portfolio-item" aria-label="${image.title}">
-              <img src="${image.src}" alt="${image.title}" loading="lazy">
+              <img src="${prefixBasePath(image.src)}" alt="${image.title}" loading="lazy">
             </a>
           `
         })
@@ -261,7 +296,7 @@ async function build() {
       })
     }
 
-    const html = renderTemplate(baseTemplate, {
+    let html = renderTemplate(baseTemplate, {
       TITLE: page.title,
       DESCRIPTION: page.description,
       HEAD_EXTRA: pageHead,
@@ -269,6 +304,8 @@ async function build() {
       MAIN_CONTENT: pageContent,
       ...pathReplacements,
     })
+
+    html = rewriteRootAbsoluteLocalUrls(html)
 
     if (TOKEN_REGEX.test(html)) {
       throw new Error(`Unresolved template token while building ${page.output}`)
@@ -304,13 +341,13 @@ async function build() {
       const detailContent = renderTemplate(portfolioDetailTemplate, {
         BUILD_TYPE_LABEL: buildTypeLabel,
         TITLE: image.title,
-        MAIN_SRC: image.src,
+        MAIN_SRC: prefixBasePath(image.src),
         DESCRIPTION: image.description,
         VIEWS_HTML: buildViewsHtml(image.views, image.title),
         ...pathReplacements,
       })
 
-      const html = renderTemplate(baseTemplate, {
+      let html = renderTemplate(baseTemplate, {
         TITLE: `${image.title} | ${buildTypeLabel}`,
         DESCRIPTION: image.description,
         HEAD_EXTRA: "",
@@ -318,6 +355,8 @@ async function build() {
         MAIN_CONTENT: detailContent,
         ...pathReplacements,
       })
+
+      html = rewriteRootAbsoluteLocalUrls(html)
 
       if (TOKEN_REGEX.test(html)) {
         throw new Error(
@@ -348,7 +387,6 @@ async function build() {
 
   console.log(`Built ${generatedPaths.length} pages successfully.`)
 }
-
 build().catch((error) => {
   console.error(error.message)
   process.exit(1)
