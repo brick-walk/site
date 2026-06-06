@@ -24,6 +24,7 @@ function renderTemplate(template, replacements) {
 
 function prefixBasePath(value) {
   if (!value) return value
+
   if (
     value.startsWith("http://") ||
     value.startsWith("https://") ||
@@ -34,6 +35,10 @@ function prefixBasePath(value) {
     value.startsWith("data:") ||
     value.startsWith("#")
   ) {
+    return value
+  }
+
+  if (value === basePathPrefix || value.startsWith(`${basePathPrefix}/`)) {
     return value
   }
 
