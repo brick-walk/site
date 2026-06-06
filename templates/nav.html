@@ -4,40 +4,22 @@
     <img src="{{LOGO_SRC}}" alt="Kellen Ulrich" class="logo-img">
   </a>
 
-  <nav class="main-nav" role="navigation" aria-label="Main navigation">
+  <nav class="main-nav" role="navigation">
     <ul class="nav-list">
       <li class="nav-item has-dropdown">
-        <button
-          type="button"
-          class="nav-link"
-          aria-haspopup="true"
-          aria-expanded="false"
-          aria-controls="portfolio-menu"
-        >
-          Portfolio
-        </button>
-        <ul class="dropdown-menu" id="portfolio-menu" aria-label="Portfolio categories">
+        <a href="#" class="nav-link">Portfolio</a>
+        <ul class="dropdown-menu">
           {{PORTFOLIO_DROPDOWN_ITEMS}}
         </ul>
       </li>
-
       <li class="nav-item has-dropdown">
-        <button
-          type="button"
-          class="nav-link"
-          aria-haspopup="true"
-          aria-expanded="false"
-          aria-controls="about-menu"
-        >
-          About
-        </button>
-        <ul class="dropdown-menu" id="about-menu" aria-label="About">
+        <a href="#" class="nav-link">About</a>
+        <ul class="dropdown-menu">
           <li><a href="{{ABOUT_HREF}}">About Me</a></li>
           <li><a href="{{BLOG_HREF}}">Blog</a></li>
           <li><a href="{{FAQ_HREF}}">FAQ</a></li>
         </ul>
       </li>
-
       <li class="nav-item">
         <a href="{{COMMISSIONS_HREF}}" class="nav-link">Commissions</a>
       </li>
