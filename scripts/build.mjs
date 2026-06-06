@@ -199,12 +199,12 @@ function buildPortfolioDropdownItemsHtml(portfolioConfigs, currentOutputPath, po
 function buildViewsHtml(views, title) {
   return (views ?? [])
     .map(
-      (viewSrc) => `
-        <figure class="overflow-hidden rounded-xl bg-zinc-100 dark:bg-zinc-900">
+      (viewSrc, index) => `
+        <figure class="overflow-hidden bg-zinc-100 dark:bg-zinc-900">
           <img
             src="${prefixBasePath(viewSrc)}"
-            alt="${title}"
-            class="aspect-square w-full object-cover"
+            alt="${title} view ${index + 1}"
+            class="aspect-[4/3] w-full object-cover transition duration-300 hover:scale-[1.02]"
             loading="lazy"
           />
         </figure>
